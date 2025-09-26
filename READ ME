@@ -1,1 +1,47 @@
-this is the discord for class https://discord.gg/GWQd9Etb
+Title: Hangman with AI and Databases
+
+Premise: Player vs CPU hangman. Both are working to guess the same word whilst attempting to build their opponent’s hangman
+Mechanics: 
+Keyboard and Mouse
+Face Camera (Optional)
+
+The game that we are proposing is a hangman game where you and the CPU have a person about to be hung. You compete against it in a turn based game to guess the word. When you guess a wrong letter, you build your person. The first one to have theirs built loses. When you guess the letter correctly twice in a row, you can take away a body part from yourself or add one to your opponent. We will have variables that represent the bot getting a letter correct in 1-4 tries, then have a RNG function that works to determine how many tries it takes the bot.
+
+
+Vs AI 
+Multiplayer PVE
+
+Storymode:
+Players will start out with easy opponents and as they go on the opponents will become harder. The theme will be cowboy western where you are a farmer and outlaws are overwhelming the area. Each of you will be trying to guess phrases from songs or quotes that are mostly cowboy themed. The final boss is the IRS.
+
+Game elements:
+Players will work against the CPU to guess the same phrase. When the user or the CPU guesses a letter right in two consecutive terms they can decide whether to remove a limb on their person or add one to their opponent.
+Timer (15 seconds)
+When an opponent guesses a letter correct, the space(s) where the correct letters of the phrase will be highlighted for the opponent but the letter will not be revealed to them
+For three consecutive incorrect guesses, a limb will be added to their person
+
+Or
+
+For three incorrect guesses, the player’s timer for the next turn will be reduced
+A player can always choose to guess a letter or phrase, but if they choose to guess the phrase and guess it incorrectly, they will have a limb added to their person/time cut for their next turn
+If a person’s cowboy is completely built, they have two opportunities to guess the phrase. If they get it wrong then they automatically get it wrong.
+
+Timeline
+
+Puzzle design/outline 9/1/25 - 9/26/25
+
+Design/outline approval 9/26/25
+
+Gathering High level requirements (HLR) 9/29/25- 10/3/25
+
+Implement Code for main game 10/6/25 - 10/24/25
+
+test run code (make sure it works) 10/27/25 - 10/29/25
+
+Add in references/music 11/3/25 - 11/12/25
+
+Work on cybersecurity 11/14/25 - 11/28/25
+
+Test run final code/fix final errors 12/1/25 - 12/8/25
+
+
