@@ -1,4 +1,4 @@
-use hangDb;
+use hangDb; --change to CREATE DATABASE hangDb; if you don't already have it on your computer 
 -- Players table 
 CREATE TABLE players (
     playerId INT PRIMARY KEY AUTO_INCREMENT,
