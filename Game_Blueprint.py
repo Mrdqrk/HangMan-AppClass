@@ -21,7 +21,7 @@ def main():
     print("Both players try to guess the same phrase.")
     print("Word:", display_progress(word, set()))
 
-    turn = "Your Turn"  # Human starts
+    turn = "human"  # Human starts
 
     while True:
         # Show progress for both
@@ -45,7 +45,7 @@ def main():
             winner = "human"
             break
 
-        if turn == "Your Turn":
+        if turn == "human":
             guess = input("Your guess: ").lower()
             if not (guess.isalpha() and len(guess) == 1):
                 print("Please enter a single alphabetical letter.")
