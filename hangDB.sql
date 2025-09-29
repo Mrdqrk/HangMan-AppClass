@@ -77,4 +77,5 @@ INSERT INTO players (playerName, Comp) VALUES
 
 -- Insert sample phrases
 INSERT INTO phrases (phraseText, category, difficulty) VALUES
-('May the Force be with you', 'pixar', 'easy');
+('May the Force be with you', 'pixar', 'easy'),
+('There’s a snake in my boot', 'pixar', 'easy');
