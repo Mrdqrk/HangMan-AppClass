@@ -21,7 +21,7 @@ def main():
     print("Both players try to guess the same phrase.")
     print("Word:", display_progress(word, set()))
 
-    turn = "human"  # Human starts
+    turn = "Your turn"  # Human starts
 
     while True:
         # Show progress for both
@@ -42,10 +42,10 @@ def main():
             winner = "AI"
             break
         if ai_attempts == 0:
-            winner = "human"
+            winner = "Your turn"
             break
 
-        if turn == "human":
+        if turn == "Your turn":
             guess = input("Your guess: ").lower()
             if not (guess.isalpha() and len(guess) == 1):
                 print("Please enter a single alphabetical letter.")
@@ -71,11 +71,11 @@ def main():
             else:
                 print("AI incorrect!")
                 ai_attempts -= 1
-                turn = "human"
+                turn = "Your turn"
 
     print("=" * 30)
     print(f"Final word: {display_progress(word, human_guessed | ai_guessed)}")
-    if winner == "human":
+    if winner == "Your turn":
         print("Congratulations! You win!")
     elif winner == "AI":
         print("AI wins!")
