@@ -1,16 +1,30 @@
 import random
 from hangman_agent import hangman_agent
+import string
 
-def update_revealed(word, guessed_letters):
-    return ''.join([letter if letter in guessed_letters else '_' for letter in word])
+# def update_revealed(word, guessed_letters):
+#     return ''.join([letter if letter in guessed_letters else '_' for letter in word])
+def update_revealed(phrase, guessed_letters):
+    # Reveals matching letters, preserves non-letters
+    return ''.join([
+        char if not char.isalpha() or char.lower() in guessed_letters else '_'
+        for char in phrase
+    ])
 
-def display_progress(word, guessed_letters):
-    return ' '.join([letter if letter in guessed_letters else '_' for letter in word])
+# def display_progress(word, guessed_letters):
+#     return ' '.join([letter if letter in guessed_letters else '_' for letter in word])
+def display_progress(phrase, guessed_letters):
+    # Shows progress with spaces between characters for readability
+    return ' '.join([
+        char if not char.isalpha() or char.lower() in guessed_letters else '_'
+        for char in phrase
+    ])
 
 def main():
   # this is just an example. We can place our database table Here
-    word_list = ["hangman", "python", "challenge", "developer", "agent"]
-    word = random.choice(word_list)
+    word_list = ["hangman", "python", "challenge", "developer", "agent", "TL;DR", "Hello, World", "There's a SNAKE in my boot"]
+   # word = random.choice(word_list)
+    phrase = random.choice(word_list)
     human_guessed = set()
     ai_guessed = set()
     human_attempts = 6
@@ -19,14 +33,14 @@ def main():
 
     print("Let's play Hangman Duel!")
     print("Both players try to guess the same phrase.")
-    print("Word:", display_progress(word, set()))
+    print("Word:", display_progress(phrase, set()))
 
     turn = "Your turn"  # Human starts
 
     while True:
         # Show progress for both
         print("-" * 30)
-        print(f"Current word: {display_progress(word, human_guessed | ai_guessed)}")
+        print(f"Current phrase: {display_progress(phrase, human_guessed | ai_guessed)}")
         print(f"Human mistakes left: {human_attempts}")
         print(f"AI mistakes left: {ai_attempts}")
         print(f"Human guessed: {sorted(human_guessed)}")
@@ -34,7 +48,7 @@ def main():
         print("-" * 30)
 
         # Check win/loss
-        current_revealed = update_revealed(word, human_guessed | ai_guessed)
+        current_revealed = update_revealed(phrase, human_guessed | ai_guessed)
         if '_' not in current_revealed:
             winner = turn
             break
@@ -46,15 +60,18 @@ def main():
             break
 
         if turn == "Your turn":
-            guess = input("Your guess: ").lower()
-            if not (guess.isalpha() and len(guess) == 1):
+            guess = input("Your guess: ").strip()
+            #if not (guess.isalpha() and len(guess) == 1):
+            if len(guess) != 1 or not guess.isalpha():
                 print("Please enter a single alphabetical letter.")
                 continue
+            guess = guess.lower()
             if guess in human_guessed | ai_guessed:
                 print("That letter has already been guessed.")
                 continue
             human_guessed.add(guess)
-            if guess in word:
+            #if guess in phrase:
+            if any(char.lower() == guess for char in phrase if char.isalpha()):
                 print("Correct! Go again.")
                 continue  # Human gets another turn
             else:
@@ -62,10 +79,11 @@ def main():
                 human_attempts -= 1
                 turn = "AI"
         else:  # AI's turn
-            guess = hangman_agent(human_guessed | ai_guessed, current_revealed, word)
+            guess = hangman_agent(human_guessed | ai_guessed, current_revealed, phrase)
             print(f"AI guesses: {guess}")
             ai_guessed.add(guess)
-            if guess in word:
+            #if guess in phrase:
+            if any(char.lower() == guess for char in phrase if char.isalpha()):
                 print("AI correct! AI goes again.")
                 continue  # AI gets another turn
             else:
@@ -74,14 +92,14 @@ def main():
                 turn = "Your turn"
 
     print("=" * 30)
-    print(f"Final word: {display_progress(word, human_guessed | ai_guessed)}")
+    print(f"Final word: {display_progress(phrase, human_guessed | ai_guessed)}")
     if winner == "Your turn":
         print("Congratulations! You win!")
     elif winner == "AI":
         print("AI wins!")
     else:
         print(f"{winner.capitalize()} guessed the word and wins!")
-    print(f"The word was: {word}")
+    print(f"The word was: {phrase}")
 
 if __name__ == "__main__":
     main()
