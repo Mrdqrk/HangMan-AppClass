@@ -1,30 +1,47 @@
 import random
 from hangman_agent import hangman_agent
 import string
+import mysql.connector
 
-# def update_revealed(word, guessed_letters):
-#     return ''.join([letter if letter in guessed_letters else '_' for letter in word])
+def get_random_phrase(cursor):
+    cursor.execute("SELECT phraseText FROM phrases ORDER BY RAND() LIMIT 1;")
+    res = cursor.fetchone()
+    if res:
+        return res[0]
+    else:
+        return None
+
 def update_revealed(phrase, guessed_letters):
-    # Reveals matching letters, preserves non-letters
     return ''.join([
         char if not char.isalpha() or char.lower() in guessed_letters else '_'
         for char in phrase
     ])
 
-# def display_progress(word, guessed_letters):
-#     return ' '.join([letter if letter in guessed_letters else '_' for letter in word])
 def display_progress(phrase, guessed_letters):
-    # Shows progress with spaces between characters for readability
     return ' '.join([
         char if not char.isalpha() or char.lower() in guessed_letters else '_'
         for char in phrase
     ])
 
+# def main():
+#   # this is just an example. We can place our database table Here
+#     word_list = ["hangman", "python", "challenge", "developer", "agent", "TL;DR", "Hello, World", "There's a SNAKE in my boot"]
+#    # word = random.choice(word_list)
 def main():
-  # this is just an example. We can place our database table Here
-    word_list = ["hangman", "python", "challenge", "developer", "agent", "TL;DR", "Hello, World", "There's a SNAKE in my boot"]
-   # word = random.choice(word_list)
-    phrase = random.choice(word_list)
+    # --- Connect to the DB ---
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="your_mysql_username",       # CHANGE THIS
+        password="your_mysql_password",   # CHANGE THIS
+        database="hangDb"
+    )
+    cursor = conn.cursor()
+
+    phrase = get_random_phrase(cursor)
+    if not phrase:
+        print("No phrases found in the database!")
+        return
+    # phrase = random.choice(word_list)
     human_guessed = set()
     ai_guessed = set()
     human_attempts = 6
@@ -100,6 +117,9 @@ def main():
     else:
         print(f"{winner.capitalize()} guessed the word and wins!")
     print(f"The word was: {phrase}")
+
+    cursor.close()
+    conn.close()
 
 if __name__ == "__main__":
     main()
