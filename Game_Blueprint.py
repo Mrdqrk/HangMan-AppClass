@@ -1,5 +1,4 @@
 import random
-import mysql.connector
 from hangman_agent import hangman_agent
 
 def update_revealed(word, guessed_letters):
