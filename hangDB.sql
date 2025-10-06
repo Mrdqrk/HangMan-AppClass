@@ -81,4 +81,10 @@ INSERT INTO phrases (phraseText, category, difficulty) VALUES
 ('We went to a rodeo and had a hog killing time','cowboy','hard'),
 {'Dumber than a box of rocks','cowboy','medium'),
 ('Vengeance is an idiots game','cowboy','medium'),
-('This town aint big enough for the two of us', 'cowboy','medium');
+('This town aint big enough for the two of us', 'cowboy','medium'),
+('I am speed','pixar','easy'),
+('Just keep swimming','pixar','easy'),
+('To infinity, and beyond','pixar','meduim'),
+('Take your place in the circle of life','pixar','medium'),
+('Long live the King','pixar','easy'),
+('Use that big brain of yours','pixar','easy');
