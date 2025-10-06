@@ -79,7 +79,7 @@ INSERT INTO players (playerName, Comp) VALUES
 INSERT INTO phrases (phraseText, category, difficulty) VALUES
 ('There is a snake in my boot', 'pixar', 'easy'),
 ('We went to a rodeo and had a hog killing time','cowboy','hard'),
-{'Dumber than a box of rocks','cowboy','medium'),
+('Dumber than a bag of rocks','cowboy','medium'),
 ('Vengeance is an idiots game','cowboy','medium'),
 ('This town aint big enough for the two of us', 'cowboy','medium'),
 ('I am speed','pixar','easy'),
