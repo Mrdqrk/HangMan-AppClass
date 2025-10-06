@@ -30,9 +30,9 @@ def display_progress(phrase, guessed_letters):
 def main():
     # --- Connect to the DB ---
     conn = mysql.connector.connect(
-        host="localhost",
-        user="your_mysql_username",       # CHANGE THIS
-        password="your_mysql_password",   # CHANGE THIS
+        host="Hangmanhost",
+        user="HangmanTeam",       # CHANGE THIS
+        password="DKDonkeyKong",   # CHANGE THIS
         database="hangDb"
     )
     cursor = conn.cursor()
