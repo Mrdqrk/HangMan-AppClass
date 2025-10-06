@@ -77,5 +77,8 @@ INSERT INTO players (playerName, Comp) VALUES
 
 -- Insert sample phrases
 INSERT INTO phrases (phraseText, category, difficulty) VALUES
-('May the Force be with you', 'pixar', 'easy'),
-('There’s a snake in my boot', 'pixar', 'easy');
+('There is a snake in my boot', 'pixar', 'easy'),
+('We went to a rodeo and had a hog killing time','cowboy','hard'),
+{'Dumber than a box of rocks','cowboy','medium'),
+('Vengeance is an idiots game','cowboy','medium'),
+('This town aint big enough for the two of us', 'cowboy','medium');
