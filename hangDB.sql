@@ -78,14 +78,15 @@ INSERT INTO players (playerName, Comp) VALUES
 
 -- Insert sample phrases
 INSERT INTO phrases (phraseText, category, difficulty) VALUES
-('There is a snake in my boot', 'pixar', 'easy'),
-('We went to a rodeo and had a hog killing time','cowboy','hard'),
-('Dumber than a bag of rocks','cowboy','medium'),
-('Vengeance is an idiots game','cowboy','medium'),
-('This town aint big enough for the two of us', 'cowboy','medium'),
-('I am speed','pixar','easy'),
-('Just keep swimming','pixar','easy'),
-('To infinity, and beyond','pixar','meduim'),
-('Take your place in the circle of life','pixar','medium'),
-('Long live the King','pixar','easy'),
-('Use that big brain of yours','pixar','easy');
+('Hog killing time','cowboy','easy'),
+('This town aint big enough for the two of us','cowboy','hard'),
+('Hi-yo Sivler! Away','cowboy', 'hard'),
+('Dumber than a box of rocks', 'cowboy', 'medium'),
+('Vengence is an idiots game', 'cowboy', 'hard'),
+('Git along now', 'cowboy', 'medium'),
+('Much obliged, partner', 'cowboy', 'easy'),
+('Easy pickings', 'cowboy', 'easy'),
+('Hold your horses', 'cowboy', 'easy'),
+('Saddle up', 'cowboy', 'easy')
+('Yeehaw', 'cowboy', 'easy')
+
