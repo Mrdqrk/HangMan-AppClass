@@ -1,7 +1,8 @@
 import random
 from hangman_agent import hangman_agent
 import string
-import mysql.connector
+// import mysql.connector
+import supabase_client
 
 def get_random_phrase(cursor):
     cursor.execute("SELECT phraseText FROM phrases ORDER BY RAND() LIMIT 1;")
