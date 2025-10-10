@@ -1,3 +1,7 @@
+PLEASE DO pip install -r requirements.txt BEFORE YOU RUN CLIENT 
+
+
+
 Title: Hangman with AI and Databases
 
 Premise: Player vs CPU hangman. Both are working to guess the same word whilst attempting to build their opponent’s hangman
