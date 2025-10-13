@@ -1,6 +1,20 @@
-PLEASE DO pip install -r requirements.txt BEFORE YOU RUN CLIENT 
+# Setup
 
+1. Clone the repo:
+   git clone https://github.com/Mrdqrk/HangMan-AppClass.git
+   cd HangMan-AppClass
 
+2. Install dependencies:
+   pip install -r requirements.txt
+
+3. Create a local config file:
+   Copy config.example.json → config.json
+   and fill in your Supabase URL and Key:
+     cp config.example.json config.json
+     # edit config.json to add your own keys
+
+4. Run the eample:
+   python3 examples.py
 
 Title: Hangman with AI and Databases
 
