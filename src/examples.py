@@ -1,38 +1,26 @@
-
-# main.py
 from supabase_client import db
 
-
-#{db.push,pull,delete,&update}
-
-
-# Pull all players 
+# Get all players
+players = db.get_all("players")
 print("=== All players ===")
-players = db.pull("players")
 print(players)
 
-# Push a new player 
-print("\n=== Adding David ===")
-push_response = db.push("players", {"playername": "David", "comp": True})
-print(push_response)  # Should show insert response
+# Insert a new player
+new_player = db.insert("players", {"playername": "David", "comp": True})
+print("=== Added David ===")
+print(new_player)
 
-# Pull filtered data 
-print("\n=== Pull players where comp=True ===")
-competitive_players = db.pull("players", {"comp": True})
-print(competitive_players)  # Should include David
+# Filter players where comp=True
+competitive_players = db.filter("players", {"comp": True})
+print("=== Competitive players ===")
+print(competitive_players)
 
-# Update a row 
-print("\n=== Updating David to comp=False ===")
-update_response = db.update("players", {"comp": False}, {"playername": "David"})
-print(update_response)  # Should show update response
+# Update David to comp=False
+updated = db.update("players", {"comp": False}, {"playername": "David"})
+print("=== Updated David ===")
+print(updated)
 
-# Delete the test row 
-print("\n=== Deleting David ===")
-delete_response = db.delete("players", {"playername": "David"})
-print(delete_response)  # Should show delete response
-
-# Final pull to confirm deletion 
-print("\n=== All players after deletion ===")
-final_players = db.pull("players")
-print(final_players)
-
+# Delete David
+deleted = db.delete("players", {"playername": "David"})
+print("=== Deleted David ===")
+print(deleted)
