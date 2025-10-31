@@ -4,15 +4,10 @@ from hangman_agent import hangman_agent
 import string
 import mysql.connector
 
-screen_w = 800
-screen_h = 600
+screen_w, screen_h = 800,600
 title = "Hangman Game (Tentative)"
 
-class HangmanGame(arcade.window):
-    def __init__ (self):
-        super().__init__(screen_w, screen_h, title)
-        arcade.set_background_color(arcade.color.light_orange)
-
+arcade.open_window (screen_w, screen_h, title)
 
 def get_random_phrase(cursor):
     cursor.execute("SELECT phraseText FROM phrases ORDER BY RAND() LIMIT 1;")
@@ -33,6 +28,12 @@ def display_progress(phrase, guessed_letters):
         char if not char.isalpha() or char.lower() in guessed_letters else '_'
         for char in phrase
     ])
+
+class HangmanGame(arcade.Window):
+    def __init__ (self):
+        super().__init__(screen_w, screen_h, title)
+        arcade.set_background_color(arcade.color.light_orange)
+        
 
 # def main():
 #   # this is just an example. We can place our database table Here
