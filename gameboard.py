@@ -91,11 +91,18 @@ class HangmanGame(tk.Frame):
             db.reveal_part(self.gameid, partid)
 
     def update_word_display(self):
-        display = " ".join([letter if letter in self.guessed else "_" for letter in self.word])
+        # show spaces immediately, underscores for unguessed letters
+        display = " ".join([
+            letter if (letter in self.guessed or letter == " ") else "_"
+            for letter in self.word
+        ])
         self.word_var.set(display)
 
     def update_bot_word_display(self):
-        display = " ".join(["0" if letter in self.bot.guessed else "_" for letter in self.word])
+        display = " ".join([
+            "0" if letter in self.bot.guessed else (" " if letter == " " else "_")
+            for letter in self.word
+        ])
         self.bot_word_var.set(display)
 
     def update_score_display(self):
@@ -105,8 +112,10 @@ class HangmanGame(tk.Frame):
     def make_guess(self):
         guess = self.entry.get().upper().strip()
         self.entry.delete(0, tk.END)
-        if not guess or len(guess) != 1 or not guess.isalpha():
-            messagebox.showerror("Error", "Enter a single letter.")
+
+        # reject invalid input including spaces
+        if not guess or len(guess) != 1 or not guess.isalpha() or guess == " ":
+            messagebox.showerror("Error", "Enter a single letter (A-Z). Spaces are not allowed.")
             return
 
         correct = guess in self.word
