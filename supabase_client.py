@@ -6,6 +6,10 @@ class SupabaseClient:
     def __init__(self):
         url = os.getenv("SUPABASE_URL")
         key = os.getenv("SUPABASE_KEY")
+
+        if not url or not key:
+            raise ValueError("Supabase credentials missing. Create .env file with SUPABASE_URL and SUPABASE_KEY.")
+
         self.client: Client = create_client(url, key)
 
     # -----------------------------

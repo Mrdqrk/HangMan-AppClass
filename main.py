@@ -1,6 +1,10 @@
 import tkinter as tk
+from security import load_secrets
+load_secrets()
 from supabase_client import db
 from gameboard import HangmanGame
+from security import authenticate, create_user
+from tkinter import messagebox
 
 class HangmanApp(tk.Tk):
     def __init__(self):
@@ -19,14 +23,54 @@ class HangmanApp(tk.Tk):
         tk.Label(self, text="Enter Username:", font=("Arial", 18)).pack(pady=20)
         self.username_entry = tk.Entry(self, font=("Arial", 16))
         self.username_entry.pack(pady=10)
-        tk.Button(self, text="Login", command=self.login).pack(pady=20)
+
+        tk.Label(self, text="Password:", font=("Arial", 18)).pack(pady=10)
+        self.password_entry = tk.Entry(self, font=("Arial", 16), show="*")
+        self.password_entry.pack(pady=5)
+
+        tk.Button(self, text="Login (Use Account)", command=self.login).pack(pady=20)
+        tk.Button(self, text="Create Account", command=self.create_account).pack(pady=5)
+
+        tk.Button(self, text="Play as Guest", command=self.login_guest).pack(pady=20)
 
     def login(self):
         username = self.username_entry.get().strip()
-        if not username:
+        password = self.password_entry.get().strip()
+
+        if not username or not password:
+            messagebox.showerror("Error", "Enter both username and password.")
             return
+        
+        if authenticate(username, password):
+            self.username = username
+            self.show_difficulty(username)
+        else:
+            messagebox.showerror("Error", "Invalid username or password.")
+
+    def create_account(self):
+        username = self.username_entry.get().strip()
+        password = self.password_entry.get().strip()
+
+        if not username or not password:
+            messagebox.showerror("Error", "Please enter a username and password.")
+            return
+
+        try:
+            create_user(username, password)
+            messagebox.showinfo("Success", "Account created. You can now log in.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not create account: {e}")
+
+    def login_guest(self):
+        username = self.username_entry.get().strip()
+        if not username:
+            messagebox.showerror("Error", "Enter a username to continue as guest.")
+            return
+        
+        db.get_or_create_player(username)
+
         self.username = username
-        self.show_difficulty(username)
+        self.show_difficulty(username)        
 
     # -----------------------------
     # Difficulty chooser

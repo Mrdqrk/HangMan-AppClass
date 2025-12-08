@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 from supabase_client import db
+from security import file_checksum
 
 def load_local_character(characterid):
     # Query character_parts for this character
@@ -19,6 +20,10 @@ def load_local_character(characterid):
             if not os.path.isabs(path):
                 # assume relative to ./images folder
                 path = os.path.join("images", path)
+
+            if not file_checksum(path):
+                print(f"[SECURITY] Missing/Bad image checksum for {path}")
+                continue 
 
             try:
                 img = tk.PhotoImage(file=path)
