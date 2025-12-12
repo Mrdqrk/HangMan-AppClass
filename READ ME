@@ -7,16 +7,14 @@
 2. Install dependencies:
    pip install -r requirements.txt
 
-3. Create a local config file:
-   Copy config.example.json → config.json
-   and fill in your Supabase URL and Key:
-     cp config.example.json config.json
-     # edit config.json to add your own keys
+3. Paste To terminal 
+export SUPABASE_URL="https://jaduiuxggmwxftpltvvh.supabase.co/"
+export SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZHVpdXhnZ213eGZ0cGx0dnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4ODcwODAsImV4cCI6MjA3NTQ2MzA4MH0.eSph4F9e8K6c5lwRpGAYZYZDOdKP-uCUoaFWidaoF-8"
 
-4. Run the eample:
-   python3 examples.py
 
-Title: Hangman with AI and Databases
+4. Run Main.py 
+
+Title: HangmanVerses 
 
 Premise: Player vs CPU hangman. Both are working to guess the same word whilst attempting to build their opponent’s hangman
 Mechanics: 
