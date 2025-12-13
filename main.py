@@ -1,9 +1,12 @@
 import tkinter as tk
+from tkinter import messagebox
 from PIL import Image, ImageTk
+from security import load_secrets, authenticate, create_user
+load_secrets()
 from supabase_client import db
 from gameboard import HangmanGame
 
-
+ 
 class HangmanApp(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -45,8 +48,20 @@ class HangmanApp(tk.Tk):
                  bg="#f5f5f5").pack(pady=20)
         self.username_entry = tk.Entry(frame, font=("Arial", 16), width=20, justify="center")
         self.username_entry.pack(pady=10)
+
+        tk.Label(frame, text="Enter Password:", font=("Arial", 20, "bold"),
+         bg="#f5f5f5").pack(pady=20)
+        self.password_entry = tk.Entry(frame, font=("Arial", 16), show="*", width=20, justify="center")
+        self.password_entry.pack(pady=10)
+
         tk.Button(frame, text="Login", font=("Arial", 14),
-                  command=self.login).pack(pady=20)
+          command=self.login).pack(pady=10)
+
+        tk.Button(frame, text="Create Account", font=("Arial", 14),
+          command=self.create_account).pack(pady=5)
+
+        tk.Button(frame, text="Play as Guest", font=("Arial", 14),
+          command=self.login_guest).pack(pady=10)
 
     def _resize_background(self, event):
         """Resize background dynamically when window changes size."""
@@ -59,8 +74,39 @@ class HangmanApp(tk.Tk):
 
     def login(self):
         username = self.username_entry.get().strip()
-        if not username:
+        password = self.password_entry.get().strip()
+
+        if not username or not password:
+            messagebox.showerror("Error", "Enter username and password.")
             return
+
+        if authenticate(username, password):
+            self.username = username
+            self.show_difficulty(username)
+        else:
+            messagebox.showerror("Error", "Invalid username or password.")
+
+    def create_account(self):
+        username = self.username_entry.get().strip()
+        password = self.password_entry.get().strip()
+
+        if not username or not password:
+            messagebox.showerror("Error", "Please enter a username and password.")
+            return
+
+        try:
+            create_user(username, password)
+            messagebox.showinfo("Success", "Account created. You can now log in.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not create account: {e}")
+
+    def login_guest(self):
+        username = self.username_entry.get().strip()
+        if not username:
+            messagebox.showerror("Error", "Enter a username to continue as guest.")
+            return
+
+        db.get_or_create_player(username)
         self.username = username
         self.show_difficulty(username)
 
