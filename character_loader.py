@@ -11,7 +11,7 @@ CATEGORY_MAP = {
     "cowboys": "cowboys",
     "pixar": "pixar",
     "social": "social",
-    "music": "cowboys",   # 👈 music phrases now use cowboy models
+    "music": "cowboys",   #music phrases now use cowboy models
 }
 
 # Required part files
