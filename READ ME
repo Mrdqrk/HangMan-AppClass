@@ -1,19 +1,18 @@
 # Setup
 
-1. Clone the repo
+1. Clone the repo:
    git clone https://github.com/Mrdqrk/HangMan-AppClass.git
    cd HangMan-AppClass
 
-2. Install dependencies
+2. Install dependencies:
    pip install -r requirements.txt
 
-3. Create config file (optional – Supabase)
-   Copy config.example.json → config.json
-   cp config.example.json config.json
-   Add your Supabase URL and Key
+3. Paste To terminal 
+export SUPABASE_URL="https://jaduiuxggmwxftpltvvh.supabase.co/"
+export SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZHVpdXhnZ213eGZ0cGx0dnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4ODcwODAsImV4cCI6MjA3NTQ2MzA4MH0.eSph4F9e8K6c5lwRpGAYZYZDOdKP-uCUoaFWidaoF-8"
 
-4. Run from source
-   python main.py
+
+4. Run Main.py 
 
 
 # HangVersus (EXE Launch)
