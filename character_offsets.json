@@ -1,0 +1,302 @@
+{
+  "beast": {
+    "left_arm": [
+      10,
+      -80
+    ],
+    "right_arm": [
+      -20,
+      -85
+    ],
+    "left_leg": [
+      0,
+      -45
+    ],
+    "head": [
+      -10,
+      -85
+    ],
+    "_scale": 85,
+    "torso": [
+      -5,
+      -90
+    ],
+    "right_leg": [
+      5,
+      -50
+    ]
+  },
+  "mama": {
+    "_scale": 40,
+    "left_arm": [
+      30,
+      -40
+    ],
+    "right_arm": [
+      -25,
+      -35
+    ],
+    "head": [
+      0,
+      -50
+    ],
+    "torso": [
+      0,
+      -70
+    ],
+    "left_leg": [
+      15,
+      -45
+    ],
+    "right_leg": [
+      -10,
+      -25
+    ]
+  },
+  "Bowser": {
+    "left_arm": [
+      -25,
+      5
+    ],
+    "right_arm": [
+      25,
+      5
+    ]
+  },
+  "Fazbear": {
+    "left_arm": [
+      -20,
+      5
+    ],
+    "right_arm": [
+      20,
+      5
+    ]
+  },
+  "Slenderman": {
+    "left_arm": [
+      -35,
+      -10
+    ],
+    "right_arm": [
+      35,
+      -10
+    ]
+  },
+  "Steve": {
+    "left_arm": [
+      -30,
+      0
+    ],
+    "right_arm": [
+      30,
+      0
+    ]
+  },
+  "Arthur": {
+    "left_arm": [
+      13,
+      -50
+    ],
+    "right_arm": [
+      -13,
+      -55
+    ],
+    "right_leg": [
+      5,
+      -105
+    ],
+    "head": [
+      0,
+      -60
+    ],
+    "_scale": 80,
+    "torso": [
+      0,
+      -80
+    ],
+    "left_leg": [
+      0,
+      -35
+    ]
+  },
+  "Clipart": {
+    "left_arm": [
+      10,
+      25
+    ],
+    "right_arm": [
+      10,
+      25
+    ],
+    "_scale": 80,
+    "torso": [
+      0,
+      -15
+    ],
+    "left_leg": [
+      0,
+      -5
+    ],
+    "right_leg": [
+      35,
+      0
+    ]
+  },
+  "Destiny": {
+    "left_arm": [
+      15,
+      -30
+    ],
+    "right_arm": [
+      -20,
+      -30
+    ],
+    "_scale": 80,
+    "torso": [
+      0,
+      -50
+    ],
+    "head": [
+      0,
+      -20
+    ],
+    "left_leg": [
+      0,
+      -25
+    ],
+    "right_leg": [
+      0,
+      -20
+    ]
+  },
+  "Rango": {
+    "left_arm": [
+      -3,
+      -20
+    ],
+    "right_arm": [
+      -7,
+      -35
+    ],
+    "torso": [
+      0,
+      0
+    ],
+    "head": [
+      -10,
+      0
+    ],
+    "_scale": 70,
+    "left_leg": [
+      0,
+      10
+    ],
+    "right_leg": [
+      -10,
+      5
+    ]
+  },
+  "Sid": {
+    "left_arm": [
+      -35,
+      -55
+    ],
+    "right_arm": [
+      -10,
+      -5
+    ],
+    "torso": [
+      -15,
+      -30
+    ],
+    "head": [
+      -20,
+      -25
+    ],
+    "_scale": 105,
+    "left_leg": [
+      -25,
+      -5
+    ],
+    "right_leg": [
+      -15,
+      -5
+    ]
+  },
+  "Buzz": {
+    "left_arm": [
+      5,
+      0
+    ],
+    "right_arm": [
+      -5,
+      10
+    ],
+    "right_leg": [
+      0,
+      0
+    ],
+    "torso": [
+      5,
+      -30
+    ],
+    "left_leg": [
+      5,
+      -15
+    ]
+  },
+  "Darla": {
+    "left_arm": [
+      15,
+      5
+    ],
+    "right_arm": [
+      -15,
+      0
+    ],
+    "_scale": 80,
+    "head": [
+      0,
+      -10
+    ],
+    "torso": [
+      5,
+      -10
+    ],
+    "left_leg": [
+      10,
+      -5
+    ],
+    "right_leg": [
+      -5,
+      -5
+    ]
+  },
+  "Syndrome": {
+    "left_arm": [
+      35,
+      -40
+    ],
+    "right_arm": [
+      20,
+      -30
+    ],
+    "torso": [
+      -5,
+      5
+    ],
+    "head": [
+      15,
+      -45
+    ],
+    "left_leg": [
+      20,
+      -10
+    ],
+    "right_leg": [
+      10,
+      -25
+    ]
+  }
+}

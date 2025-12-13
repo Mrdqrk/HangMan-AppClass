@@ -3,7 +3,6 @@ import random
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 
@@ -12,20 +11,15 @@ class SupabaseClient:
         url = os.getenv("SUPABASE_URL")
         key = os.getenv("SUPABASE_KEY")
 
-        # Debug prints 
-        print("DEBUG SUPABASE_URL:", repr(url))
-        print("DEBUG SUPABASE_KEY set?:", bool(key))
-
         if not url or not key:
             raise RuntimeError(
                 "Missing Supabase configuration. "
                 f"SUPABASE_URL={url}, SUPABASE_KEY_SET={bool(key)}"
             )
 
-        # Supabase client
         self.client: Client = create_client(url, key)
 
-    # Player
+    # player
     def get_or_create_player(self, username):
         result = (
             self.client
@@ -45,7 +39,7 @@ class SupabaseClient:
         )
         return insert.data[0]["playerid"]
 
-    # Game
+    # game
     def start_game(self, phraseid, playerid):
         game = (
             self.client
@@ -66,21 +60,31 @@ class SupabaseClient:
     def update(self, table, values, match):
         return self.client.from_(table).update(values).match(match).execute()
 
-    # Phrase
+    # phrase
     def get_random_phrase(self, difficulty="medium"):
+        allowed = {"cowboy", "cowboys", "pixar", "social"}
+
         result = (
             self.client
             .from_("phrases")
-            .select("phraseid, phrasetext, category")
-            .eq("difficulty", difficulty)
+            .select("phraseid, phrasetext, category, difficulty")
             .execute()
         )
-        if result.data and len(result.data) > 0:
-            choice = random.choice(result.data)
+
+        rows = result.data or []
+        rows = [
+            r for r in rows
+            if (r.get("difficulty") or "").strip().lower() == difficulty.lower()
+            and (r.get("category") or "").strip().lower() in allowed
+        ]
+
+        if rows:
+            choice = random.choice(rows)
             return choice["phraseid"], choice["phrasetext"], choice.get("category", "")
+
         return None, None, None
 
-    # Guess
+    # guesses
     def record_guess(self, gameid, playerid, letter, correct):
         data = {
             "gameid": gameid,
@@ -88,9 +92,7 @@ class SupabaseClient:
             "guessedletter": letter,
             "correct": correct
         }
-        result = self.client.from_("guesses").insert(data).execute()
-        print(f"[DEBUG] record_guess: {data}, Result={result}")
-        return result
+        return self.client.from_("guesses").insert(data).execute()
 
     def get_score(self, gameid, playerid):
         result = (
@@ -107,26 +109,14 @@ class SupabaseClient:
 
     def increment_score(self, gameid, playerid):
         try:
-            result = self.client.rpc("increment_score", {
+            return self.client.rpc("increment_score", {
                 "p_gameid": gameid,
                 "p_playerid": playerid
             }).execute()
-            print(f"[DEBUG] increment_score: gameid={gameid}, playerid={playerid}, Result={result}")
-            return result
-        except Exception as e:
-            print(f"[ERROR] increment_score failed: {e}")
+        except Exception:
             return None
 
-    # Body
-    def reveal_part(self, gameid, partid):
-        return (
-            self.client
-            .from_("revealed_parts")
-            .insert({"gameid": gameid, "partid": partid, "revealed": True})
-            .execute()
-        )
-
-    # Leader
+    # leaderboard
     def get_leaderboard(self, difficulty):
         result = (
             self.client
@@ -137,9 +127,7 @@ class SupabaseClient:
             .limit(10)
             .execute()
         )
-        print(f"[DEBUG] get_leaderboard: Difficulty={difficulty}, Result={result.data}")
         return result.data
 
 
-# Singleton instance
 db = SupabaseClient()
